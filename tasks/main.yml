@@ -26,6 +26,7 @@
         dest: ~/.ssh/id_rsa
         src: ~/.ssh/id_rsa
         mode: 600
+      changed_when: False
       when: ansible_distribution != 'MacOSX'
   when: ansible_play_hosts|sort == groups.all|sort
   tags:
