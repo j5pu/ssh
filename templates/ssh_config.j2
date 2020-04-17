@@ -6,5 +6,10 @@ Host *
 
 {% for host in groups.all|sort %}
 Host {{host}}
+{% if host in groups.par1 %}
+    Hostname {{ hostvars[host]['public_ipv4'] }}
+{% else %}
     Hostname {{host + '.' + hostvars[host]['domain'] if hostvars[host]['domain'] is defined else hostvars[host]['ansible_ssh_host']}}
+{% endif %}
+    User {{ hostvars[host]['account_name'] }}
 {% endfor %}

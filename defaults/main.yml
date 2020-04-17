@@ -2,7 +2,7 @@
 # defaults file for ssh
 ssh_config:
 #    Port: "{{ ssh_port }}"
-    User: "{{ account_name }}"
+#    User: "{{ account_name }}"
     AddressFamily: inet
     BatchMode: 'no'
     CheckHostIP: 'no'
@@ -11,7 +11,8 @@ ssh_config:
     ControlPath: "/tmp/ssh-%h-%r-%p"
     ControlPersist: 30m
     IdentitiesOnly: 'yes'
-    IdentityFile: "~/.ssh/{{ account_name }}/id_rsa"
+#    IdentityFile: "~/.ssh/{{ account_name }}*/id_rsa"
+    IdentityFile: "~/.ssh/id_rsa"
     LogLevel: QUIET
     SendEnv: 'LANG LC_*'
     ServerAliveInterval: 240
