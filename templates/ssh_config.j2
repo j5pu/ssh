@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+Host *
+{% for item in ssh_config|dict2items %}
+    {{item.key}} {{item.value}}
+{% endfor %}
+
+{% for host in groups.all|sort %}
+Host {{host}}
+    Hostname {{host + '.' + hostvars[host]['domain'] if hostvars[host]['domain'] is defined else hostvars[host]['ansible_ssh_host']}}
+{% endfor %}

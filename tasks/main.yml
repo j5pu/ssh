@@ -1,0 +1,23 @@
+---
+# tasks file for ssh
+- name: ssh
+  block:
+    - name: check play called with all hosts
+      assert:
+        that: ansible_play_hosts|sort == groups.all|sort
+        fail_msg: ansible_play_hosts != groups.all
+        success_msg: ansible_play_hosts == groups.all
+      ignore_errors: yes
+      run_once: True
+      connection: local
+
+    - name: ssh_config
+      become: no
+      template:
+        src: ssh_config.j2
+        dest: ~/.ssh/config
+        mode: preserve
+  when: ansible_play_hosts|sort == groups.all|sort
+  tags:
+    - always
+    - base_ssh

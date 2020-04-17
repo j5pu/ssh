@@ -1,0 +1,5 @@
+---
+# vars file for ssh
+ssh_dir: '~/'
+ssh_file: config
+ssh_path: "{{ ssh_dir }}/{{ ssh_file }}"
